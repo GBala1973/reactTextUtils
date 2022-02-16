@@ -24,7 +24,7 @@ const TextForm = (props) => {
     let abText = '';
     if(abTextArr.length) {
       abTextArr.forEach((elem, i) => {
-        abText += (i != abTextArr.length -1) ? abTextArr[i].charAt(0) +'.' : abTextArr[i];
+        abText += (i != abTextArr.length -1) ? abTextArr[i].charAt(0).toUpperCase() +'. ' : abTextArr[i];
       });
     } 
     setText(abText);
@@ -48,11 +48,11 @@ const TextForm = (props) => {
               <textarea className="form-control" onChange={handleOnChange} value={text} id="mybox" rows="8"></textarea>
           </div>
           <div className="btn-container d-flex justify-content-between">
-            <button className="btn btn-primary" onClick={handleUpperCase}>Upper</button>
-            <button className="btn btn-primary" onClick={handleLowerCase}>Lower</button>
-            <button className="btn btn-primary" onClick={handleAbreviation}>Abreviate</button>
-            <button className="btn btn-primary" onClick={handleExtractEmail}>Email extract</button>
-            <button className="btn btn-primary" onClick={handleClearText}>Clear</button>
+            <button className="btn btn-primary btn-sm" onClick={handleUpperCase}>Upper</button>
+            <button className="btn btn-primary btn-sm" onClick={handleLowerCase}>Lower</button>
+            <button className="btn btn-primary btn-sm" onClick={handleAbreviation}>Abreviate</button>
+            <button className="btn btn-primary btn-sm" onClick={handleExtractEmail}>Email extract</button>
+            <button className="btn btn-primary btn-sm" onClick={handleClearText}>Clear</button>
           </div>
       </div>
       <div className="container my-3">
