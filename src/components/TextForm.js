@@ -56,7 +56,7 @@ const TextForm = (props) => {
   const onAlternatingCase = () => {
     let newtext = ""
     for (let index = 0; index < text.length; index++) {
-        if ((index % 2) == 0) {
+        if ((index % 2) === 0) {
           newtext += text[index].toLowerCase()
         }
         else {
@@ -93,10 +93,10 @@ const TextForm = (props) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{color: props.mode === 'light' ? 'black' :'white'}}>
           <h2>{props.heading}</h2>
           <div className="mb-3">
-              <textarea className="form-control" onChange={handleOnChange} value={text} id="mybox" rows="8"></textarea>
+              <textarea className="form-control" style={{backgroundColor: props.mode === 'light' ? 'white' :'grey', color: props.mode === 'light' ? 'black' :'white' }} onChange={handleOnChange} value={text} id="mybox" rows="8"></textarea>
           </div>
           <div className="btn-container d-flex justify-content-between">
             <button className="btn btn-primary btn-sm" onClick={handleUpperCase}>Upper</button>
@@ -112,14 +112,15 @@ const TextForm = (props) => {
             <button className="btn btn-primary btn-sm" onClick={removeExtraSpaces}>Extra space</button>
             <button className="btn btn-primary btn-sm" onClick={handleClearText}>Clear</button>
           </div>
+          <div className="my-3">
+            <h2>Your text summary</h2>
+            <p>{ text ? text.split(' ').filter(function(t) {return t!== ''}).length : 0 } words, { text.length } characters</p>
+            <p>{ text ? Math.ceil(0.008 * text.split(' ').length) : 0 } minutes to read!</p>
+            <h3>Preview</h3>
+            <p>{ text ? text : 'Enter something to preview...' }</p>
+          </div>
       </div>
-      <div className="container my-3">
-        <h2>Your text summary</h2>
-        <p>{ text ? text.split(' ').filter(function(t) {return t!== ''}).length : 0 } words, { text.length } characters</p>
-        <p>{ text ? Math.ceil(0.008 * text.split(' ').length) : 0 } minutes to read!</p>
-        <h3>Preview</h3>
-        <p>{ text }</p>
-      </div>
+      
     </>
     
   )
