@@ -24,7 +24,7 @@ const TextForm = (props) => {
     let abText = '';
     if(abTextArr.length) {
       abTextArr.forEach((elem, i) => {
-        abText += (i != abTextArr.length -1) ? abTextArr[i].charAt(0).toUpperCase() +'. ' : abTextArr[i];
+        abText += (i !== abTextArr.length -1) ? abTextArr[i].charAt(0).toUpperCase() +'. ' : abTextArr[i];
       });
     } 
     setText(abText);
