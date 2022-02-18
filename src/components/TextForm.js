@@ -8,6 +8,7 @@ const TextForm = (props) => {
   const handleUpperCase = () => {
     const upperText = text.toUpperCase();
     setText(upperText);
+    props.showAlert('Converted to uppercase', 'success');
   }
 
   const handleClearText = () => {
@@ -17,6 +18,7 @@ const TextForm = (props) => {
   const handleLowerCase = () => {
     const lowerText = text.toLowerCase();
     setText(lowerText);
+    props.showAlert('Converted to lowercase', 'success');
   }
 
   const handleAbreviation = () => {
@@ -28,10 +30,10 @@ const TextForm = (props) => {
       });
     } 
     setText(abText);
+    props.showAlert('Abbreviate completed', 'success');
   }
 
-  const handleCapitalizeClick = ()=>{
-    console.log('capitalize called')
+  const handleCapitalizeClick = () => {
     const words = text.split(' ')
     for (let i=0; i<words.length;i++){
         words[i] = words[i][0].toUpperCase() + words[i].substring(1);
@@ -39,11 +41,13 @@ const TextForm = (props) => {
     }
     let newText = words.join(' ');
     setText(newText)
+    props.showAlert('Text capitalize successfully', 'success');
   }
 
   const handleExtractEmail = () => {
     const regex = (/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi);
     setText(text.match(regex).join('\n'));
+    props.showAlert('Email extracted', 'success');
 
   }
 
@@ -51,6 +55,7 @@ const TextForm = (props) => {
     let set1 = new Set(text.split(" "));
     let newText = Array.from(set1).join(" ");
     setText(newText);
+    props.showAlert('Redundent word removed', 'success');
   }
 
   const onAlternatingCase = () => {
@@ -64,27 +69,30 @@ const TextForm = (props) => {
         }
     }
     setText(newtext)
+    props.showAlert('Alternate character case changed', 'success');
   }
 
-  const vowelCheck = ()=>{
-    const count = text.match(/[aeiou]/gi).length;
-    setText("You have "+count + " no of vowels");
-  }
+  // const vowelCheck = ()=>{
+  //   const count = text.match(/[aeiou]/gi).length;
+  //   setText("You have "+count + " no of vowels");
+  // }
 
-  const consonentCheck = ()=>{
-    const count = text.length - text.match(/[aeiou]/gi).length;
-    setText("You have "+count + " no of consonents");
-  }
+  // const consonentCheck = ()=>{
+  //   const count = text.length - text.match(/[aeiou]/gi).length;
+  //   setText("You have "+count + " no of consonents");
+  // }
 
   const handleCopy = () => {
     const text = document.getElementById('mybox');
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert('Copy to clipboard!', 'success');
   }
 
   const removeExtraSpaces = () => {
     const newText = text.split(/[ ]+/);
-    setText(newText.join('  '));
+    setText(newText.join(' '));
+    props.showAlert('Extra space removed!', 'success');
   }
 
   const handleOnChange = (event) => {
@@ -101,15 +109,15 @@ const TextForm = (props) => {
           <div className="btn-container d-flex justify-content-between">
             <button className="btn btn-primary btn-sm" onClick={handleUpperCase}>Upper</button>
             <button className="btn btn-primary btn-sm" onClick={handleLowerCase}>Lower</button>
+            <button className="btn btn-primary btn-sm" onClick={removeExtraSpaces}>Extra space</button>
             <button className="btn btn-primary btn-sm" onClick={handleCapitalizeClick}>Capitalize</button>
-            <button className="btn btn-primary btn-sm" onClick={handleAbreviation}>Abreviate</button>
             <button className="btn btn-primary btn-sm" onClick={handleRedundancy}>Redundent</button>
+            <button className="btn btn-primary btn-sm" onClick={handleAbreviation}>Abreviate</button>
             <button className="btn btn-primary btn-sm" onClick={onAlternatingCase}>Alternate Case</button>
-            <button className="btn btn-primary btn-sm" onClick={vowelCheck}>Vowel Count</button>
-            <button className="btn btn-primary btn-sm" onClick={consonentCheck}>Consonent Count</button>
+            {/* <button className="btn btn-primary btn-sm" onClick={vowelCheck}>Vowel Count</button>
+            <button className="btn btn-primary btn-sm" onClick={consonentCheck}>Consonent Count</button> */}
             <button className="btn btn-primary btn-sm" onClick={handleExtractEmail}>Email extract</button>
             <button className="btn btn-primary btn-sm" onClick={handleCopy}>Copy</button>
-            <button className="btn btn-primary btn-sm" onClick={removeExtraSpaces}>Extra space</button>
             <button className="btn btn-primary btn-sm" onClick={handleClearText}>Clear</button>
           </div>
           <div className="my-3">
