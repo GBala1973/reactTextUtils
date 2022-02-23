@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import {
+  NavLink,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
 
 const Navbar = (props) => {
@@ -18,10 +23,10 @@ const Navbar = (props) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                <NavLink className="nav-link {({ isActive }) => isActive ? 'active' : ''}" aria-current="page" to="/">Home</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">{props.aboutus}</a>
+                <NavLink className="nav-link {({ isActive }) => isActive ? 'active' : ''}"  to="/about">{props.aboutus}</NavLink>
               </li>
             </ul>
             {/* <form className="d-flex">
