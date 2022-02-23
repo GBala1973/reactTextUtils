@@ -61,5 +61,5 @@ Navbar.propTypes = {
 
 Navbar.defaultProps = {
     title: 'test123',
-    aboutus: 'About you'
+    aboutus: ''
 }

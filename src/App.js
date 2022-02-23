@@ -32,10 +32,12 @@ function App() {
       setMode('dark');
       document.body.style.backgroundColor = '#042743';
       showAlert('Dark mode enable', 'warning');
+      document.title = 'Textutils - Dark Mode';
     }else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert('Light mode enable', 'success');
+      document.title = 'Textutils - Light Mode';
     }
   }
 
@@ -43,6 +45,8 @@ function App() {
       document.body.style.backgroundColor = themeBucket[theme].bg;
       setMode(theme);
       showAlert('Theme color '+theme, 'warning');
+      const title = theme.charAt(0).toUpperCase() + theme.substring(1);
+      document.title = `Textutils - ${title} Mode`;
   }
 
   return (
